@@ -2,15 +2,19 @@ SOURCE_DIRECTORY=src
 BUILD_DIRECTORY=build
 DIST_DIRECTORY=dist
 
-build: $(DIST_DIRECTORY)/dapi.js
+TEST_COMMAND=$(shell pwd)/node_modules/mocha/bin/mocha
+
+build: EntityQuery.js
 
 clean:
 	rm -rf $(DIST_DIRECTORY)/*
 
-$(DIST_DIRECTORY)/dapi.js: $(BUILD_DIRECTORY)/dapi.js.build
-	cp $< $@
+tests:
+	- $(TEST_COMMAND) tests
 
-$(BUILD_DIRECTORY)/dapi.js.build:
-	cp $(SOURCE_DIRECTORY)/dapi.js $@
+EntityQuery.js: $(DIST_DIRECTORY)/EntityQuery.js
 
-.PHONY: build
+$(DIST_DIRECTORY)/%.js:
+	cp $(SOURCE_DIRECTORY)/$(@F) $@
+
+.PHONY: build clean tests

@@ -4,7 +4,7 @@
   "description": "A toolsuite for working with Drupal REST APIs.",
   "main": "dist/dapi.js",
   "scripts": {
-    "test": "test",
+    "test": "make tests",
     "build": "make build",
     "clean": "make clean"
   },
@@ -12,5 +12,9 @@
     "drupal"
   ],
   "author": "Gabriel SULLICE",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
 }
