@@ -1,0 +1,16 @@
+{
+  "name": "dapi",
+  "version": "0.0.0",
+  "description": "A toolsuite for working with Drupal REST APIs.",
+  "main": "dist/dapi.js",
+  "scripts": {
+    "test": "test",
+    "build": "make build",
+    "clean": "make clean"
+  },
+  "keywords": [
+    "drupal"
+  ],
+  "author": "Gabriel SULLICE",
+  "license": "ISC"
+}
