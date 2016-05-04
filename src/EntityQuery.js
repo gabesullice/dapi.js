@@ -1,7 +1,8 @@
 //var ConditionGroup = require('./QueryOption/ConditionGroup');
 //var Condition = require('./QueryOption/Condition');
 //var Exist = require('./QueryOption/Exist');
-//var Sort = require('./QueryOption/Sort');
+var Sort = require('./QueryOption/Sort');
+var Condition = require('./QueryOption/Condition');
 
 var EntityQuery = function () {
   this.conditions = [];
@@ -20,6 +21,16 @@ var EntityQuery = function () {
 EntityQuery.prototype.range = function (start, length) {
   this.rangeOptions.start = start;
   this.rangeOptions.length = length;
+  return this;
+};
+
+EntityQuery.prototype.condition = function (field, value, operator, langcode) {
+  this.conditions.push(new Condition(field, value, operator, langcode));
+  return this;
+};
+
+EntityQuery.prototype.sort = function (field, direction, langcode) {
+  this.sorts.push(new Sort(field, direction, langcode));
   return this;
 };
 
@@ -54,13 +65,5 @@ EntityQuery.prototype.range = function (start, length) {
 //};
 //EntityQuery.prototype.notExists = function () {
 //};
-
-EntityQuery.prototype.getQueryOption = function (type, args) {
-  function ConstructType() {
-    return type.apply(args);
-  }
-  ConstructType.prototype = type.prototype;
-  return new ConstructType();
-}
 
 module.exports = EntityQuery;

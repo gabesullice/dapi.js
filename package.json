@@ -6,7 +6,8 @@
   "scripts": {
     "test": "make tests",
     "build": "make build",
-    "clean": "make clean"
+    "clean": "make clean",
+    "watch": "make watch"
   },
   "keywords": [
     "drupal"
