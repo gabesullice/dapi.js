@@ -3,6 +3,8 @@ var assert = require('chai').assert;
 var EntityQuery = require('../dist/EntityQuery');
 var Sort = require('../dist/QueryOption/Sort');
 var Condition = require('../dist/QueryOption/Condition');
+var ConditionGroup = require('../dist/QueryOption/ConditionGroup');
+var Exists = require('../dist/QueryOption/Exists');
 
 describe('EntityQuery', function () {
   describe('#range()', function () {
@@ -90,4 +92,111 @@ describe('EntityQuery', function () {
       assert.equal(entityQuery.conditions[1].value, "value1");
     });
   });
+
+  describe('#exists()', function () {
+    it('should create a new exists condition on the query object', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.exists('title');
+      assert.instanceOf(entityQuery.existsOptions[0], Exists);
+    });
+
+    it('should create a new exists condition on the query object with the correct values', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.exists("title", "en-US");
+      assert.equal(entityQuery.existsOptions[0].field, "title");
+      assert.equal(entityQuery.existsOptions[0].langcode, "en-US");
+      assert.equal(entityQuery.existsOptions[0].condition, true);
+    });
+
+    it('should create a new exists condition with the correct defaults', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.exists("title");
+      assert.equal(entityQuery.existsOptions[0].field, "title");
+      assert.equal(entityQuery.existsOptions[0].langcode, null);
+      assert.equal(entityQuery.existsOptions[0].condition, true);
+    });
+
+    it('should support adding multiple exists conditions', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.exists("field0").exists("field1");
+      assert.equal(entityQuery.existsOptions[0].field, "field0");
+      assert.equal(entityQuery.existsOptions[1].field, "field1");
+    });
+  });
+
+  describe('#notExists()', function () {
+    it('should create a new exists condition on the query object', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.notExists('title');
+      assert.instanceOf(entityQuery.existsOptions[0], Exists);
+    });
+
+    it('should create a new exists condition on the query object with the correct values', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.notExists("title", "en-US");
+      assert.equal(entityQuery.existsOptions[0].field, "title");
+      assert.equal(entityQuery.existsOptions[0].langcode, "en-US");
+      assert.isFalse(entityQuery.existsOptions[0].condition);
+    });
+
+    it('should create a new exists condition with the correct defaults', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.notExists("title");
+      assert.equal(entityQuery.existsOptions[0].field, "title");
+      assert.equal(entityQuery.existsOptions[0].langcode, null);
+      assert.isFalse(entityQuery.existsOptions[0].condition);
+    });
+
+    it('should support adding multiple exists conditions', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.notExists("field0").notExists("field1");
+      assert.equal(entityQuery.existsOptions[0].field, "field0");
+      assert.equal(entityQuery.existsOptions[1].field, "field1");
+    });
+  });
+
+  describe('#andConditionGroup()', function () {
+    it('should create a new conditionGroup on the query object', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.andConditionGroup();
+      assert.instanceOf(entityQuery.conditionGroups[0], ConditionGroup);
+    });
+
+    it('should create a new conditionGroup on the query object with the proper conjunction', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.andConditionGroup();
+      assert.equal(entityQuery.conditionGroups[0].conjunction, "AND");
+    });
+
+    it('should support adding multiple conditionGroups', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.andConditionGroup();
+      entityQuery.andConditionGroup();
+      assert.instanceOf(entityQuery.conditionGroups[0], ConditionGroup);
+      assert.instanceOf(entityQuery.conditionGroups[1], ConditionGroup);
+    });
+  });
+
+  describe('#orConditionGroup()', function () {
+    it('should create a new conditionGroup on the query object', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.orConditionGroup();
+      assert.instanceOf(entityQuery.conditionGroups[0], ConditionGroup);
+    });
+
+    it('should create a new conditionGroup on the query object with the proper conjunction', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.orConditionGroup();
+      assert.equal(entityQuery.conditionGroups[0].conjunction, "OR");
+    });
+
+    it('should support adding multiple conditionGroups', function () {
+      var entityQuery = new EntityQuery();
+      entityQuery.orConditionGroup();
+      entityQuery.orConditionGroup();
+      assert.instanceOf(entityQuery.conditionGroups[0], ConditionGroup);
+      assert.instanceOf(entityQuery.conditionGroups[1], ConditionGroup);
+    });
+  });
+
 });
