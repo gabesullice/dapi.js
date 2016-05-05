@@ -3,7 +3,7 @@ var assert = require('chai').assert;
 var EntityQuery = require('../dist/EntityQuery');
 var Condition = require('../dist/QueryOption/Condition');
 
-describe('Exists', function () {
+describe('Condition', function () {
 
   describe('#attach()', function () {
     it('should correctly create parameters.', function () {
