@@ -18,7 +18,8 @@ describe('Condition', function () {
         { field: "field0", value: "value0", operator: "CONTAINS", langcode: "en-US" },
         { field: "field0", value: "value0", operator: "ENDS_WITH", langcode: "en-US" },
         { field: "field0", value: "value0", langcode: "en-US" },
-        { field: "field0", value: "value0", operator: "=" }
+        { field: "field0", value: "value0", operator: "=" },
+        { field: "field0", value: "value0" }
       ];
 
       var assert_variation = function (variation) {
