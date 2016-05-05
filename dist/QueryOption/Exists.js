@@ -1,7 +1,8 @@
 var Exists = function (field, langcode, condition) {
+  this.type = "exists";
   this.field = field;
   this.langcode = langcode ? langcode : null;
-  this.condition = (typeof condition === undefined) ? true : condition;
+  this.condition = (condition == undefined) ? true : condition;
 };
 
 Exists.prototype.attach = function (id, query) {
@@ -16,9 +17,9 @@ Exists.prototype.attach = function (id, query) {
   }
 
   Array.prototype.push.apply(query, parameters.map(function (parameter) {
-    parameter.key = "exists_" + id;
+    parameter.key = this.type + "_" + id;
     return parameter;
-  }));
+  }, this));
 };
 
 module.exports = Exists;

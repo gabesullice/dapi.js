@@ -1,4 +1,5 @@
 var Condition = function (field, value, operator, langcode) {
+  this.type = "condition";
   this.field = field;
   this.value = value;
   this.operator = operator ? operator : "=";
