@@ -1,8 +1,11 @@
 var dapi = dapi.connect({options});
 dapi.addAdapter(something);
+
 var query = dapi.query('assessment').condition(...);
-var firstNames = dapi.get(query).map(function (assessment) {
-  return dapi.pluck("firstName");
+var results = dapi.get(query);
+
+var firstNames = results.map(function (assessment) {
+  return dapi.pluck("firstName", assessment);
 });
 
 var node = dapi.get('node', 1254);
