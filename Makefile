@@ -3,9 +3,12 @@ BUILD_DIRECTORY=build
 DIST_DIRECTORY=dist
 TESTS_DIRECTORY=tests
 
+UGLIFY_COMMAND=$(shell pwd)/node_modules/uglify-js/bin/uglifyjs
 TEST_COMMAND=$(shell pwd)/node_modules/mocha/bin/mocha $(TESTS_DIRECTORY)
 
-build: EntityQuery.js Sort.js
+UGLIFY_OPTIONS=--compress
+
+build: $(DIST_DIRECTORY)/entityQuery.min.js $(DIST_DIRECTORY)/dapi.min.js
 
 clean:
 	rm -rf $(DIST_DIRECTORY)/*
@@ -13,10 +16,7 @@ clean:
 tests:
 	- $(TEST_COMMAND)
 
-rebuild: .watch
-	make clean
-	make build
-	make tests
+rebuild: .watch tests build
 
 watch: .watch
 	while true; do sleep .75; make -s checksum; done;
@@ -27,14 +27,10 @@ checksum:
 .watch:
 	cat `find . -type f ! -path *./.git* ! -name .watch` | base64 | md5sum | tee .watch
 
-EntityQuery.js: $(DIST_DIRECTORY)/EntityQuery.js
+$(DIST_DIRECTORY)/%.min.js: $(BUILD_DIRECTORY)/%.js
+	$(UGLIFY_COMMAND) $< $(UGLIFY_OPTIONS) > $@
 
-Sort.js: $(DIST_DIRECTORY)/QueryOption/Sort.js
-
-$(DIST_DIRECTORY)/%.js:
-	cp -r $(SOURCE_DIRECTORY)/* $(DIST_DIRECTORY)/
-
-$(DIST_DIRECTORY)/%:
-	mkdir -p $@
+$(BUILD_DIRECTORY)/%.js: $(SOURCE_DIRECTORY)/%.js
+	browserify $(SOURCE_DIRECTORY)/$(shell basename $@) > $@
 
 .PHONY: build clean tests rebuild .watch

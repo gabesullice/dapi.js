@@ -1,10 +1,10 @@
 var assert = require("chai").assert;
 
-var EntityQuery = require("../dist/EntityQuery");
-var Sort = require("../dist/QueryOption/Sort");
-var Condition = require("../dist/QueryOption/Condition");
-var ConditionGroup = require("../dist/QueryOption/ConditionGroup");
-var Exists = require("../dist/QueryOption/Exists");
+var EntityQuery = require("../src/entityQuery");
+var Sort = require("../src/queryOption/sort");
+var Condition = require("../src/queryOption/condition");
+var ConditionGroup = require("../src/queryOption/conditionGroup");
+var Exists = require("../src/queryOption/exists");
 
 describe("EntityQuery", function () {
   describe("#range()", function () {
@@ -202,21 +202,40 @@ describe("EntityQuery", function () {
   });
 
   describe("#getQueryString", function () {
-    //it("should return a query string", function () {
-    //  var tests = [
-    //    {
-    //      expected: "?condition_0[field]=field0&condition_0[value]=value0&condition_0[operator]=NOTEQ&range[start]=0&range[length]=10]&sort_0[field]=field1&sort_0[direction]=DESC",
-    //      actual: function () {
-    //        var query = new EntityQuery();
-    //        return query.condition("field0", "value0", "<>").range(0, 10).sort("field1", "DESC").getQueryString();
-    //      }(),
-    //    },
-    //  ];
+    var tests = [
+      {
+        title: "should return a query string",
+        expected: "condition_0[field]=field0&condition_0[value]=value0&condition_0[operator]=NOTEQ&sort_0[field]=field1&sort_0[direction]=DESC&range[start]=0&range[length]=10",
+        actual: function () {
+          var query = new EntityQuery();
+          return query.condition("field0", "value0", "<>").range(0, 10).sort("field1", "DESC").getQueryString();
+        }(),
+      },
+    ];
 
-    //  tests.forEach(function (test) {
-    //    assert.equal(test.actual, test.expected);
-    //  });
-    //});
+    tests.forEach(function (test) {
+      it(test.title, function () {
+        assert.equal(test.actual, test.expected);
+      });
+    });
+  });
+
+  describe("#paramToString", function () {
+    var tests = [
+      {
+        title: "should correctly serialize parameter objects",
+        actual: function () {
+          return EntityQuery.prototype.paramToString({ key: "key", name: "property", value: "value" });
+        }(),
+        expected: "key[property]=value",
+      },
+    ];
+
+    tests.forEach(function (test) {
+      it(test.title, function () {
+        assert.equal(test.actual, test.expected);
+      });
+    });
   });
 
   describe("#compile", function () {

@@ -1,9 +1,9 @@
 var assert = require("chai").assert;
 
-var EntityQuery = require("../dist/EntityQuery");
-var ConditionGroup = require("../dist/QueryOption/ConditionGroup");
-var Condition = require("../dist/QueryOption/Condition");
-var Exists = require("../dist/QueryOption/Exists");
+var EntityQuery = require("../src/entityQuery");
+var ConditionGroup = require("../src/queryOption/conditionGroup");
+var Condition = require("../src/queryOption/condition");
+var Exists = require("../src/queryOption/exists");
 
 describe("ConditionGroup", function () {
 

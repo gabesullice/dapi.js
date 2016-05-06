@@ -1,8 +1,8 @@
 {
-  "name": "dapi",
+  "name": "entityQuery",
   "version": "0.0.0",
   "description": "A toolsuite for working with Drupal REST APIs.",
-  "main": "dist/dapi.js",
+  "main": "dist/entityQuery.min.js",
   "scripts": {
     "test": "make tests",
     "build": "make build",
@@ -15,7 +15,9 @@
   "author": "Gabriel SULLICE",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^13.0.1",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "uglify-js": "^2.6.2"
   }
 }

@@ -1,5 +1,5 @@
-var Condition = require("./Condition.js");
-var Exists = require("./Exists.js");
+var Condition = require("./condition.js");
+var Exists = require("./exists.js");
 
 var ConditionGroup = function (conjunction, group) {
   this.type = "group";

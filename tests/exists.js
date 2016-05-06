@@ -1,7 +1,7 @@
 var assert = require("chai").assert;
 
-var EntityQuery = require("../dist/EntityQuery");
-var Exists = require("../dist/QueryOption/Exists");
+var EntityQuery = require("../src/entityQuery");
+var Exists = require("../src/queryOption/exists");
 
 describe("Exists", function () {
 

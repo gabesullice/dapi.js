@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 
-var EntityQuery = require('../dist/EntityQuery');
-var Sort = require('../dist/QueryOption/Sort');
+var EntityQuery = require('../src/entityQuery');
+var Sort = require('../src/queryOption/sort');
 
 describe('Sort', function () {
 

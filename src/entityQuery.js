@@ -1,9 +1,10 @@
-var Sort = require("./QueryOption/Sort");
-var Condition = require("./QueryOption/Condition");
-var ConditionGroup = require("./QueryOption/ConditionGroup");
-var Exists = require("./QueryOption/Exists");
+var Sort = require("./queryOption/sort");
+var Condition = require("./queryOption/condition");
+var ConditionGroup = require("./queryOption/conditionGroup");
+var Exists = require("./queryOption/exists");
 
 var EntityQuery = function () {
+
   this.children = [];
 
   this.count = false;
@@ -51,7 +52,7 @@ EntityQuery.prototype.orConditionGroup = function () {
 };
 
 EntityQuery.prototype.getQueryString = function () {
-  return "";
+  return this.compile().map(this.paramToString).join("&");
 };
 
 EntityQuery.prototype.compile = function () {
@@ -72,5 +73,9 @@ EntityQuery.prototype.compile = function () {
 
   return parameters;
 };
+
+EntityQuery.prototype.paramToString = function (param) {
+  return param.key + "[" + param.name + "]=" + param.value;
+}
 
 module.exports = EntityQuery;

@@ -1,7 +1,7 @@
 var assert = require("chai").assert;
 
-var EntityQuery = require("../dist/EntityQuery");
-var Condition = require("../dist/QueryOption/Condition");
+var EntityQuery = require("../src/entityQuery");
+var Condition = require("../src/queryOption/condition");
 
 describe("Condition", function () {
 

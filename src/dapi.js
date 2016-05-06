@@ -1,5 +1,5 @@
-module.exports = {
-  greet: function (name) {
-    console.log("hello, " + name + "!");
-  }
-}
+var EntityQuery = require("./entityQuery");
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  window.EntityQuery = EntityQuery;
+});
