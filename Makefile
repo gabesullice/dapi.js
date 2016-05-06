@@ -19,7 +19,7 @@ rebuild: .watch
 	make tests
 
 watch: .watch
-	while true; do sleep .5; make -s checksum; done;
+	while true; do sleep .75; make -s checksum; done;
 
 checksum:
 	cat `find . -type f ! -path *./.git* ! -name .watch` | base64 | md5sum --status -c .watch || make -s rebuild
