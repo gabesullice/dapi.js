@@ -8,7 +8,7 @@ TEST_COMMAND=$(shell pwd)/node_modules/mocha/bin/mocha $(TESTS_DIRECTORY)
 
 UGLIFY_OPTIONS=--compress
 
-build: $(DIST_DIRECTORY)/entityQuery.min.js $(DIST_DIRECTORY)/dapi.min.js
+build: $(DIST_DIRECTORY)/entityQuery.min.js $(DIST_DIRECTORY)/dapi.min.js $(DIST_DIRECTORY)/app.min.js
 
 clean:
 	rm -rf $(DIST_DIRECTORY)/*
