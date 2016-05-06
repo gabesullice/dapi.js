@@ -1,12 +1,12 @@
-var assert = require('chai').assert;
+var assert = require("chai").assert;
 
-var EntityQuery = require('../dist/EntityQuery');
-var Condition = require('../dist/QueryOption/Condition');
+var EntityQuery = require("../dist/EntityQuery");
+var Condition = require("../dist/QueryOption/Condition");
 
-describe('Condition', function () {
+describe("Condition", function () {
 
-  describe('#attach()', function () {
-    it('should correctly create parameters.', function () {
+  describe("#attach()", function () {
+    it("should correctly create parameters.", function () {
       var variations = [
         { field: "field0", value: "value0", operator: "=", langcode: "en-US" },
         { field: "field0", value: "value0", operator: "<>", langcode: "en-US" },
@@ -69,8 +69,8 @@ describe('Condition', function () {
     });
   });
 
-  describe('#mapOperator()', function () {
-    it('should correctly map all non-alpha operators to alpha operators', function () {
+  describe("#mapOperator()", function () {
+    it("should correctly map all non-alpha operators to alpha operators", function () {
       var mappings = [ 
         { input: "=",  expect: "EQ",},
         { input: "<>", expect: "NOTEQ",},

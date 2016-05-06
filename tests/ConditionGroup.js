@@ -1,14 +1,14 @@
-var assert = require('chai').assert;
+var assert = require("chai").assert;
 
-var EntityQuery = require('../dist/EntityQuery');
-var ConditionGroup = require('../dist/QueryOption/ConditionGroup');
-var Condition = require('../dist/QueryOption/Condition');
-var Exists = require('../dist/QueryOption/Exists');
+var EntityQuery = require("../dist/EntityQuery");
+var ConditionGroup = require("../dist/QueryOption/ConditionGroup");
+var Condition = require("../dist/QueryOption/Condition");
+var Exists = require("../dist/QueryOption/Exists");
 
-describe('ConditionGroup', function () {
+describe("ConditionGroup", function () {
 
-  describe('#attach()', function () {
-    it('should correctly create parameters.', function () {
+  describe("#attach()", function () {
+    it("should correctly create parameters.", function () {
       var variations = [
         { conjunction: "AND", group: "group_0" },
         { conjunction: "OR", group: "group_0" },
@@ -43,7 +43,7 @@ describe('ConditionGroup', function () {
       variations.forEach(assert_variation);
     });
 
-    it('should correctly create child parameters', function () {
+    it("should correctly create child parameters", function () {
       var tests = [
         {
           actual: function () {
@@ -96,36 +96,36 @@ describe('ConditionGroup', function () {
     });
   });
 
-  describe('#condition', function () {
-    it('should accept conditions', function () {
+  describe("#condition", function () {
+    it("should accept conditions", function () {
       var group = new ConditionGroup().condition("field0", "value0");
       assert.deepEqual(group.children, [ new Condition("field0", "value0"), ]);
     });
   });
 
-  describe('#andConditionGroup', function () {
-    it('should create child andConditionGroups', function () {
+  describe("#andConditionGroup", function () {
+    it("should create child andConditionGroups", function () {
       var group = new ConditionGroup().andConditionGroup();
       assert.deepEqual(group.children, [ new ConditionGroup("AND"), ]);
     });
   });
 
-  describe('#orConditionGroup', function () {
-    it('should create child orConditionGroups', function () {
+  describe("#orConditionGroup", function () {
+    it("should create child orConditionGroups", function () {
       var group = new ConditionGroup().orConditionGroup();
       assert.deepEqual(group.children, [ new ConditionGroup("OR"), ]);
     });
   });
 
-  describe('#exists', function () {
-    it('should create child exists', function () {
+  describe("#exists", function () {
+    it("should create child exists", function () {
       var group = new ConditionGroup().exists("field0");
       assert.deepEqual(group.children, [ new Exists("field0") ]);
     });
   });
 
-  describe('#notExists', function () {
-    it('should create child notExists', function () {
+  describe("#notExists", function () {
+    it("should create child notExists", function () {
       var group = new ConditionGroup().notExists("field0");
       assert.deepEqual(group.children, [ new Exists("field0", null, false) ]);
     });

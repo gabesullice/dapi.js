@@ -1,7 +1,7 @@
-var Sort = require('./QueryOption/Sort');
-var Condition = require('./QueryOption/Condition');
-var ConditionGroup = require('./QueryOption/ConditionGroup');
-var Exists = require('./QueryOption/Exists');
+var Sort = require("./QueryOption/Sort");
+var Condition = require("./QueryOption/Condition");
+var ConditionGroup = require("./QueryOption/ConditionGroup");
+var Exists = require("./QueryOption/Exists");
 
 var EntityQuery = function () {
   this.conditions = [];
