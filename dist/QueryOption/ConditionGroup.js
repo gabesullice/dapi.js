@@ -46,13 +46,13 @@ ConditionGroup.prototype.notExists = function (field, langcode) {
 };
 
 ConditionGroup.prototype.andConditionGroup = function () {
-  this.children.push(new ConditionGroup("AND"));
-  return this;
+  var len = this.children.push(new ConditionGroup("AND"));
+  return this.children[len - 1];
 };
 
 ConditionGroup.prototype.orConditionGroup = function () {
-  this.children.push(new ConditionGroup("OR"));
-  return this;
+  var len = this.children.push(new ConditionGroup("OR"));
+  return this.children[len - 1];
 };
 
 module.exports = ConditionGroup;

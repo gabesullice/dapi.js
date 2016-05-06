@@ -62,7 +62,8 @@ describe("ConditionGroup", function () {
         {
           actual: function () {
             var group, query = [];
-            group = new ConditionGroup().andConditionGroup()
+            group = new ConditionGroup();
+            group.andConditionGroup()
             group.attach(1, query);
             return query;
           }(),
@@ -75,7 +76,9 @@ describe("ConditionGroup", function () {
         {
           actual: function () {
             var group, query = [];
-            group = new ConditionGroup().condition("field1", "value1").andConditionGroup().attach(2, query);
+            group = new ConditionGroup().condition("field1", "value1");
+            group.andConditionGroup();
+            group.attach(2, query);
             return query;
           }(),
           expected: [
@@ -105,14 +108,16 @@ describe("ConditionGroup", function () {
 
   describe("#andConditionGroup", function () {
     it("should create child andConditionGroups", function () {
-      var group = new ConditionGroup().andConditionGroup();
+      var group = new ConditionGroup();
+      group.andConditionGroup();
       assert.deepEqual(group.children, [ new ConditionGroup("AND"), ]);
     });
   });
 
   describe("#orConditionGroup", function () {
     it("should create child orConditionGroups", function () {
-      var group = new ConditionGroup().orConditionGroup();
+      var group = new ConditionGroup();
+      group.orConditionGroup();
       assert.deepEqual(group.children, [ new ConditionGroup("OR"), ]);
     });
   });
