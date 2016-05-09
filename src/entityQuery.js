@@ -3,7 +3,8 @@ var Condition = require("./queryOption/condition");
 var ConditionGroup = require("./queryOption/conditionGroup");
 var Exists = require("./queryOption/exists");
 
-var EntityQuery = function () {
+var EntityQuery = function (type) {
+  this.entityType = type;
 
   this.children = [];
 
