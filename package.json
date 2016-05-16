@@ -12,6 +12,9 @@
   "keywords": [
     "drupal"
   ],
+  "files": [
+    "dist/*.min.js"
+  ],
   "author": "Gabriel SULLICE",
   "license": "ISC",
   "devDependencies": {
