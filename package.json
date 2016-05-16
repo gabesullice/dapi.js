@@ -1,8 +1,8 @@
 {
-  "name": "entityQuery",
+  "name": "dapi",
   "version": "0.0.0",
   "description": "A toolsuite for working with Drupal REST APIs.",
-  "main": "dist/entityQuery.min.js",
+  "main": "dist/dapi.min.js",
   "scripts": {
     "test": "make tests",
     "build": "make build",
