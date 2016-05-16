@@ -9,7 +9,7 @@ The Entity Query API binding is a javascript library for creating entity query q
 
 ##### Example
 ```javascript
-var EntityQuery = require("dapi").entityQuery;
+var EntityQuery = require("drupal-api").entityQuery;
 
 var query = new EntityQuery("node");
 query
@@ -19,5 +19,11 @@ query
     .condition("field_color", "green", "CONTAINS");
 query.sort("created", "DESC");
 
-queryString = query.getQueryString(); // Outputs: condition_0[field]=field_color&condition_0[value]=red&condition_0[operator]=CONTAINS&group_0[conjunction]=OR&condition_00[field]=field_color&condition_00[value]=blue&condition_00[operator]=CONTAINS&condition_00[group]=group_0&condition_01[field]=field_color&condition_01[value]=green&condition_01[operator]=CONTAINS&condition_01[group]=group_0&sort_0[field]=created&sort_0[direction]=DESC
+queryString = query.getQueryString();
+// Outputs:
+// condition_0[field]=field_color&condition_0[value]=red&condition_0[operator]=CONTAINS \
+// &group_0[conjunction]=OR \
+// &condition_00[field]=field_color&condition_00[value]=blue&condition_00[operator]=CONTAINS&condition_00[group]=group_0 \
+// &condition_01[field]=field_color&condition_01[value]=green&condition_01[operator]=CONTAINS&condition_01[group]=group_0 \
+// &sort_0[field]=created&sort_0[direction]=DESC
 ```
