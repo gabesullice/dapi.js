@@ -1,6 +1,6 @@
 {
   "name": "drupal-api",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A toolsuite for working with Drupal REST APIs.",
   "main": "dist/dapi.min.js",
   "scripts": {
