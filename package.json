@@ -1,6 +1,6 @@
 {
   "name": "drupal-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A toolsuite for working with Drupal REST APIs.",
   "main": "index.js",
   "scripts": {
