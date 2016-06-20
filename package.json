@@ -1,26 +1,29 @@
 {
   "name": "drupal-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A toolsuite for working with Drupal REST APIs.",
-  "main": "dist/dapi.min.js",
+  "main": "index.js",
   "scripts": {
-    "test": "make tests",
-    "build": "make build",
-    "clean": "make clean",
-    "watch": "make watch"
+    "test": "./node_modules/mocha/bin/mocha tests",
+    "build": "./node_modules/.bin/webpack --progress",
+    "clean": "rm -rf dist/"
   },
   "keywords": [
     "drupal"
   ],
-  "files": [
-    "dist/*.min.js"
-  ],
   "author": "Gabriel SULLICE",
+  "contributors": [
+    {
+      "name": "Matthew Grill",
+      "email": "matt.grill@acquia.com"
+    }
+  ],
   "license": "ISC",
   "devDependencies": {
-    "browserify": "^13.0.1",
     "chai": "^3.5.0",
+    "expose-loader": "^0.7.1",
     "mocha": "^2.4.5",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "webpack": "^1.13.1"
   }
 }
