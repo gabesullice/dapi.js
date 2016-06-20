@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests",
     "build": "./node_modules/.bin/webpack --progress",
-    "clean": "rm -rf dist/"
+    "clean": "rm -rf dist/",
+    "watch": "./node_modules/.bin/watch 'npm t' src"
   },
   "keywords": [
     "drupal"
@@ -24,6 +25,7 @@
     "expose-loader": "^0.7.1",
     "mocha": "^2.4.5",
     "uglify-js": "^2.6.2",
+    "watch": "^0.19.1",
     "webpack": "^1.13.1"
   }
 }
